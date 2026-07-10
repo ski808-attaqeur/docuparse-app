@@ -1,6 +1,6 @@
 # docuparse-app
 
-AI-first document parser that ingests any file, extracts structured data with confidence scores, surfaces low-confidence fields for human review, and pushes approved data to webhooks, Google Sheets, or CRMs.
+docuparse-app
 
 ## ⚠️ READ THIS BEFORE WRITING ANY CODE
 A complete, correct plan for this app is already committed in `/docs`. Do **not** start
@@ -8,17 +8,9 @@ from the project name, the summary above, or your own assumptions — those will
 build the wrong thing (e.g. a marketing landing page). Open the plan and build from it:
 
 - `docs/PRD.md`
-- `docs/ARCHITECTURE.md`
-- `docs/DATA_MODEL.md`
-- `docs/INTELLIGENCE_LAYER.md`
-- `docs/AGENTIC_LAYER.md`
-- `docs/SECURITY.md`
-- `docs/TASKS.md`
-- `docs/TEST_PLAN.md`
 
 ## Build rules (binding — follow in order)
-1. **Read first:** open `docs/PRD.md`, `docs/DATA_MODEL.md`, `docs/ARCHITECTURE.md`, and
-   `docs/TASKS.md` before writing a single line.
+1. **Read first:** open everything in `/docs` — these are the specs the builder wrote — before writing a single line.
 2. **Confirm the plan** back to me in 2–3 lines (the core objects + the one main workflow) BEFORE coding.
 3. **Build the ONE core engine/verb FIRST, working end-to-end.** Every app has a main action —
    create a proposal, run the quote/simulation, log a change and act on it. Build THAT against the
@@ -46,10 +38,8 @@ build the wrong thing (e.g. a marketing landing page). Open the plan and build f
   the next deploy.
 - **The Supabase database is already provisioned** and its keys are in this project's Vercel
   env. Pull them locally: `vercel link` then `vercel env pull .env.local`. Don't invent new ones.
-- **Your database is already set up.** The schema from your data model has been applied to
-  this project's Supabase database and committed at `supabase/migrations/0001_init.sql`. Build on
-  the existing tables — **do not recreate them**. To change the schema, add a NEW migration file
-  (`supabase/migrations/0002_*.sql`) and apply it; never edit `0001`.
+- **Database-first:** turn your data model into a Supabase migration and apply it BEFORE
+  building features. Do not build local-only / in-memory.
 - **Commit as your GitHub identity, or Vercel will block the deploy.** Vercel verifies that
   every commit's author email belongs to your GitHub account. Your machine's default git email
   often isn't, so the very first local commit gets rejected. Pin this repo's identity once
